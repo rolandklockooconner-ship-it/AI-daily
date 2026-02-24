@@ -5,227 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI每日简报</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #f8f9fa;
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        header {
-            text-align: center;
-            padding: 40px 0;
-            border-bottom: 2px solid #e9ecef;
-            margin-bottom: 30px;
-        }
-        
-        h1 {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 8px;
-        }
-        
-        .date {
-            color: #6c757d;
-            font-size: 0.9rem;
-        }
-        
-        .section {
-            background: white;
-            border-radius: 12px;
-            padding: 24px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-        }
-        
-        .section-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 16px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid #e9ecef;
-        }
-        
-        .highlight .section-title {
-            color: #2563eb;
-        }
-        
-        .news-item {
-            padding: 12px 0;
-            border-bottom: 1px solid #f1f3f4;
-        }
-        
-        .news-item:last-child {
-            border-bottom: none;
-        }
-        
-        .news-item h3 {
-            font-size: 1rem;
-            font-weight: 500;
-            margin-bottom: 6px;
-        }
-        
-        .news-item a {
-            color: #1a1a1a;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        
-        .news-item a:hover {
-            color: #2563eb;
-        }
-        
-        .news-item .meta {
-            font-size: 0.8rem;
-            color: #6c757d;
-        }
-        
-        .tag {
-            display: inline-block;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.7rem;
-            font-weight: 500;
-            margin-right: 8px;
-        }
-        
-        .tag-hot {
-            background: #fee2e2;
-            color: #dc2626;
-        }
-        
-        .tag-new {
-            background: #dbeafe;
-            color: #2563eb;
-        }
-        
-        .tag-tool {
-            background: #d1fae5;
-            color: #059669;
-        }
-        
-        footer {
-            text-align: center;
-            padding: 30px;
-            color: #6c757d;
-            font-size: 0.85rem;
-        }
-        
-        @media (max-width: 600px) {
-            .container {
-                padding: 15px;
-            }
-            
-            h1 {
-                font-size: 1.5rem;
-            }
-            
-            .section {
-                padding: 16px;
-            }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans SC', sans-serif; background: #f5f5f5; color: #333; line-height: 1.8; }
+        .container { max-width: 700px; margin: 0 auto; padding: 20px; }
+        header { text-align: center; padding: 30px 0; margin-bottom: 30px; }
+        h1 { font-size: 1.8rem; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; }
+        .date { color: #666; font-size: 0.9rem; }
+        .news-card { background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+        .news-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 12px; line-height: 1.5; }
+        .news-title a { color: #1a1a1a; text-decoration: none; }
+        .news-title a:hover { color: #2563eb; }
+        .news-meta { font-size: 0.8rem; color: #666; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
+        .news-summary { color: #444; font-size: 0.95rem; line-height: 1.8; text-align: justify; }
+        footer { text-align: center; padding: 30px; color: #888; font-size: 0.85rem; }
+        @media (max-width: 600px) { .container { padding: 15px; } .news-card { padding: 18px; } }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
             <h1>🤖 AI每日简报</h1>
-            <p class="date">2026年2月24日 · 周一</p>
+            <p class="date">2026年2月24日</p>
         </header>
-        
-        <div class="section highlight">
-            <div class="section-title">🔥 今日头条</div>
-            
-            <div class="news-item">
-                <h3><a href="#">Claude 4.5 发布：编程能力超越GPT-4</a></h3>
-                <p class="meta"><span class="tag tag-hot">重磅</span>Anthropic 发布最新Claude模型，代码能力显著提升</p>
+
+        <div class="news-card">
+            <div class="news-title">
+                <a href="https://serverhost.com/blog/firefox-148-launches-with-exciting-ai-kill-switch-feature-and-more-enhancements/" target="_blank">Firefox 148 Launches with AI Kill Switch Feature and More Enhancements</a>
             </div>
-            
-            <div class="news-item">
-                <h3><a href="#">OpenAI Sora 正式开放公测</a></h3>
-                <p class="meta"><span class="tag tag-new">新产品</span>AI视频生成工具Sora全面开放</p>
+            <div class="news-meta">
+                🔥 337 热度 · 💬 286 评论
+            </div>
+            <div class="news-summary">
+                Mozilla发布了Firefox 148版本，带来了一项重要的AI功能——AI Kill Switch（AI停止开关）。这个新功能允许用户完全禁用浏览器中的AI功能，增强了用户隐私控制和选择权。除了这个核心功能外，Firefox 148还带来了多项性能优化和用户体验改进。作为主流浏览器之一，Firefox此举反映了科技行业对AI功能用户控制权的重视，也体现了浏览器竞争的新趋势。
             </div>
         </div>
-        
-        <div class="section">
-            <div class="section-title">📰 行业动态</div>
-            
-            <div class="news-item">
-                <h3><a href="#">Google 发布 Gemini 2.5 Pro</a></h3>
-                <p class="meta">多模态能力再升级，数学推理能力提升40%</p>
+
+        <div class="news-card">
+            <div class="news-title">
+                <a href="https://github.com/GreatScott/enveil" target="_blank">Show HN: enveil – hide your .env secrets from prying eyes</a>
             </div>
-            
-            <div class="news-item">
-                <h3><a href="#">微软Copilot全面接入Office</a></h3>
-                <p class="meta">企业版Copilot更新，支持自定义工作流</p>
+            <div class="news-meta">
+                🔥 128 热度 · 💬 76 评论
             </div>
-            
-            <div class="news-item">
-                <h3><a href="#">AI 编程 Agent 市场爆发</a></h3>
-                <p class="meta">Cursor、Windsurf、Claude Code 三大工具竞争激烈</p>
-            </div>
-            
-            <div class="news-item">
-                <h3><a href="#">中国AI投资创新高</a></h3>
-                <p class="meta">2026年Q1 AI领域融资额同比增长120%</p>
-            </div>
-            
-            <div class="news-item">
-                <h3><a href="#">Meta 开源 Llama 4</a></h3>
-                <p class="meta">最新Llama 4参数规模达1000B</p>
+            <div class="news-summary">
+                enveil是一个专注于保护开发者隐私的开源工具，主要用于隐藏.env文件中的敏感信息，防止它们被意外提交到代码仓库或暴露在公共场合。随着AI编程助手的普及，越来越多的代码被上传和分析，开发者面临着敏感信息泄露的风险。enveil通过加密和环境变量管理，帮助开发者安全地使用AI工具进行编程，同时保护API密钥、数据库凭证等敏感数据不被泄露。
             </div>
         </div>
-        
-        <div class="section">
-            <div class="section-title">🛠️ 工具/产品</div>
-            
-            <div class="news-item">
-                <h3><a href="#">Notion AI 推出离线模式</a></h3>
-                <p class="meta"><span class="tag tag-tool">效率</span>支持本地AI处理，保护隐私</p>
+
+        <div class="news-card">
+            <div class="news-title">
+                <a href="https://www.guidelabs.ai/post/steerling-8b-base-model-release/" target="_blank">Show HN: Steerling-8B, a language model that can explain any token it generates</a>
             </div>
-            
-            <div class="news-item">
-                <h3><a href="#">Figma AI 设计助手上线</a></h3>
-                <p class="meta">一句话生成完整设计稿</p>
+            <div class="news-meta">
+                🔥 223 热度 · 💬 66 评论
             </div>
-            
-            <div class="news-item">
-                <h3><a href="#">Perplexity 推出 Pro 订阅</a></h3>
-                <p class="meta">AI搜索领域竞争加剧</p>
+            <div class="news-summary">
+                Steerling-8B是一个具有可解释性的人工智能语言模型，它的独特之处在于能够解释自己生成的每一个token（词元）。与传统的"黑箱"AI模型不同，Steerling-8B让用户能够理解AI的思考过程和决策依据。这种可解释性对于AI安全、审计和信任建立至关重要。开发者可以通过这个模型更好地理解AI的行为模式，对于构建更透明、更可控的AI系统具有重要意义。
             </div>
         </div>
-        
-        <div class="section">
-            <div class="section-title">💡 观点/分析</div>
-            
-            <div class="news-item">
-                <h3><a href="#">AI Agent: 2026年最重要技术趋势</a></h3>
-                <p class="meta">从对话到执行，AI正在成为真正的助手</p>
-            </div>
-            
-            <div class="news-item">
-                <h3><a href="#">大模型价格战即将到来</a></h3>
-                <p class="meta">算力成本下降，AI服务价格面临调整</p>
-            </div>
-        </div>
-        
+
         <footer>
-            <p>由AI驱动 · 每日更新</p>
-            <p>有问题？联系我们</p>
+            <p>🤖 AI每日简报 · 每天自动更新</p>
         </footer>
     </div>
 </body>

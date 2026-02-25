@@ -341,6 +341,30 @@
             .bg-decoration { height: 320px; }
         }
         
+        /* 区块标题 */
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 30px 0 16px;
+            padding-left: 12px;
+            border-left: 4px solid var(--primary);
+        }
+        
+        /* 手动推荐卡片 */
+        .manual-card {
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .manual-badge {
+            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+        }
+        
+        .tag-manual {
+            background: linear-gradient(135deg, rgba(245,158,11,0.1) 0%, rgba(251,191,36,0.1) 100%);
+            color: #d97706;
+        }
+        
         /* 暗色模式 */
         @media (prefers-color-scheme: dark) {
             :root {
@@ -379,7 +403,93 @@
                 <span>源自 Hacker News</span>
             </div>
         </div>
+
+        <div class="section-title">📝 今日推荐</div>
+        <div class="news-list">
+
+        <div class="news-card manual-card">
+            <div class="card-header">
+                <div class="news-title">
+                    <a href="https://openai.com" target="_blank">OpenAI发布GPT-5技术预览</a>
+                </div>
+                <div class="rank-badge manual-badge">推荐</div>
+            </div>
+            <div class="tags"><span class="tag tag-manual">编辑推荐</span></div>
+            <div class="news-summary">
+                近日，OpenAI正式发布GPT-5技术预览版，展现了跨模态理解和推理能力的重大突破。新版本在科学推理、代码生成和多语言任务上显著提升，同时引入了更精细的对齐机制来减少幻觉。OpenAI表示，GPT-5将继续遵循"稳步迭代"策略，先面向Plus用户开放测试。
+            </div>
+            <a href="https://openai.com" target="_blank" class="read-more">
+                阅读原文 →
+            </a>
+        </div>
+
+        <div class="news-card manual-card">
+            <div class="card-header">
+                <div class="news-title">
+                    <a href="https://example.com" target="_blank">AI Agent浪潮席卷硅谷</a>
+                </div>
+                <div class="rank-badge manual-badge">推荐</div>
+            </div>
+            <div class="tags"><span class="tag tag-manual">编辑推荐</span></div>
+            <div class="news-summary">
+                2026年初，AI Agent成为硅谷最热门投资方向。多家初创公司获得千万美元融资，核心方向包括自动化工作流、多Agent协作和个性化AI助手。投资人认为，Agent代表了从"对话"到"行动"的范式转移，将深刻改变软件交互方式。
+            </div>
+            <a href="https://example.com" target="_blank" class="read-more">
+                阅读原文 →
+            </a>
+        </div>
+
+        <div class="news-card manual-card">
+            <div class="card-header">
+                <div class="news-title">
+                    <a href="https://example.com" target="_blank">英伟达发布新一代AI芯片B200</a>
+                </div>
+                <div class="rank-badge manual-badge">推荐</div>
+            </div>
+            <div class="tags"><span class="tag tag-manual">编辑推荐</span></div>
+            <div class="news-summary">
+                英伟达在GTC大会上发布Blackwell架构B200 GPU，AI性能达到20PetaFLOPS。黃仁勋表示，该芯片将大幅降低大模型训练成本，推动AI应用普及。新芯片预计Q3上市，首批供应云服务商。
+            </div>
+            <a href="https://example.com" target="_blank" class="read-more">
+                阅读原文 →
+            </a>
+        </div>
+
+        <div class="news-card manual-card">
+            <div class="card-header">
+                <div class="news-title">
+                    <a href="https://example.com" target="_blank">北大发布中文大模型评估基准</a>
+                </div>
+                <div class="rank-badge manual-badge">推荐</div>
+            </div>
+            <div class="tags"><span class="tag tag-manual">编辑推荐</span></div>
+            <div class="news-summary">
+                北京大学联合多家机构发布"中文大模型综合评估基准"，涵盖知识推理、文学创作、专业领域理解等维度。基准测试显示，国产大模型在中文理解任务上已接近GPT-4水平，但在复杂推理方面仍有差距。
+            </div>
+            <a href="https://example.com" target="_blank" class="read-more">
+                阅读原文 →
+            </a>
+        </div>
+
+        <div class="news-card manual-card">
+            <div class="card-header">
+                <div class="news-title">
+                    <a href="https://example.com" target="_blank">AI编程工具市场爆发</a>
+                </div>
+                <div class="rank-badge manual-badge">推荐</div>
+            </div>
+            <div class="tags"><span class="tag tag-manual">编辑推荐</span></div>
+            <div class="news-summary">
+                AI编程助手市场2026年预计突破50亿美元。GitHub Copilot、Cursor等工具用户激增，开发者效率提升40%以上。行业分析认为，AI编程将从"辅助编码"向"自主完成项目"演进。
+            </div>
+            <a href="https://example.com" target="_blank" class="read-more">
+                阅读原文 →
+            </a>
+        </div>
+
+        </div>
         
+        <div class="section-title">🔥 热门资讯</div>
         <div class="news-list">
 
         <div class="news-card">
@@ -391,8 +501,8 @@
             </div>
             <div class="tags"><span class="tag">大模型</span></div>
             <div class="news-meta">
-                <div class="meta-item hot">🔥 72</div>
-                <div class="meta-item">💬 12</div>
+                <div class="meta-item hot">🔥 85</div>
+                <div class="meta-item">💬 16</div>
                 <div class="domain">🌐 github.com</div>
             </div>
             <div class="news-summary">
@@ -406,62 +516,20 @@
         <div class="news-card">
             <div class="card-header">
                 <div class="news-title">
-                    <a href="https://www.cape.co/" target="_blank">Cell Service for the Fairly Paranoid</a>
+                    <a href="https://www.inceptionlabs.ai/blog/introducing-mercury-2" target="_blank">Mercury 2: The fastest reasoning LLM, powered by diffusion</a>
                 </div>
                 <div class="rank-badge">2</div>
             </div>
-            <div class="tags"><span class="tag">AI前沿</span></div>
+            <div class="tags"><span class="tag">大模型</span></div>
             <div class="news-meta">
-                <div class="meta-item hot">🔥 36</div>
-                <div class="meta-item">💬 22</div>
-                <div class="domain">🌐 www.cape.co</div>
+                <div class="meta-item hot">🔥 18</div>
+                <div class="meta-item">💬 7</div>
+                <div class="domain">🌐 www.inceptionlabs.ai</div>
             </div>
             <div class="news-summary">
-                Hacker News热门讨论话题，获得36个点赞。点击链接查看完整内容和社区讨论。这是当天最受关注的AI相关话题之一，汇聚了全球开发者和技术爱好者的观点。 该话题在Hacker News上获得了36个用户的关注和讨论，吸引了22条评论。这是一个值得关注的技术趋势，反映了当前AI领域最热门的发展方向。
+                Hacker News热门讨论话题，获得18个点赞。点击链接查看完整内容和社区讨论。这是当天最受关注的AI相关话题之一，汇聚了全球开发者和技术爱好者的观点。 该话题在Hacker News上获得了18个用户的关注和讨论，吸引了7条评论。这是一个值得关注的技术趋势，反映了当前AI领域最热门的发展方向。
             </div>
-            <a href="https://www.cape.co/" target="_blank" class="read-more">
-                阅读原文 →
-            </a>
-        </div>
-
-        <div class="news-card">
-            <div class="card-header">
-                <div class="news-title">
-                    <a href="https://vmfunc.re/blog/persona/" target="_blank">OpenAI, the US government and Persona built an identity surveillance machine</a>
-                </div>
-                <div class="rank-badge">3</div>
-            </div>
-            <div class="tags"><span class="tag">OpenAI</span></div>
-            <div class="news-meta">
-                <div class="meta-item hot">🔥 417</div>
-                <div class="meta-item">💬 133</div>
-                <div class="domain">🌐 vmfunc.re</div>
-            </div>
-            <div class="news-summary">
-                Related ongoing thread: Discord cuts ties with identity verification software, Persona - https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=47136036 - Feb 2026 (282 comments) 该话题在Hacker News上获得了417个用户的关注和讨论，吸引了133条评论。这是一个值得关注的技术趋势，反映了当前AI领域最热门的发展方向。
-            </div>
-            <a href="https://vmfunc.re/blog/persona/" target="_blank" class="read-more">
-                阅读原文 →
-            </a>
-        </div>
-
-        <div class="news-card">
-            <div class="card-header">
-                <div class="news-title">
-                    <a href="https://blog.cloudflare.com/vinext/" target="_blank">How we rebuilt Next.js with AI in one week</a>
-                </div>
-                <div class="rank-badge">4</div>
-            </div>
-            <div class="tags"><span class="tag">AI前沿</span></div>
-            <div class="news-meta">
-                <div class="meta-item hot">🔥 326</div>
-                <div class="meta-item">💬 102</div>
-                <div class="domain">🌐 blog.cloudflare.com</div>
-            </div>
-            <div class="news-summary">
-                Hacker News热门讨论话题，获得326个点赞。点击链接查看完整内容和社区讨论。这是当天最受关注的AI相关话题之一，汇聚了全球开发者和技术爱好者的观点。 该话题在Hacker News上获得了326个用户的关注和讨论，吸引了102条评论。这是一个值得关注的技术趋势，反映了当前AI领域最热门的发展方向。
-            </div>
-            <a href="https://blog.cloudflare.com/vinext/" target="_blank" class="read-more">
+            <a href="https://www.inceptionlabs.ai/blog/introducing-mercury-2" target="_blank" class="read-more">
                 阅读原文 →
             </a>
         </div>
@@ -471,16 +539,16 @@
                 <div class="news-title">
                     <a href="https://www.nytimes.com/2026/02/24/business/irs-meta-corporate-taxes.html" target="_blank">IRS Tactics Against Meta Open a New Front in the Corporate Tax Fight</a>
                 </div>
-                <div class="rank-badge">5</div>
+                <div class="rank-badge">3</div>
             </div>
             <div class="tags"><span class="tag">AI前沿</span></div>
             <div class="news-meta">
-                <div class="meta-item hot">🔥 178</div>
+                <div class="meta-item hot">🔥 180</div>
                 <div class="meta-item">💬 192</div>
                 <div class="domain">🌐 www.nytimes.com</div>
             </div>
             <div class="news-summary">
-                Hacker News热门讨论话题，获得178个点赞。点击链接查看完整内容和社区讨论。这是当天最受关注的AI相关话题之一，汇聚了全球开发者和技术爱好者的观点。 该话题在Hacker News上获得了178个用户的关注和讨论，吸引了192条评论。这是一个值得关注的技术趋势，反映了当前AI领域最热门的发展方向。
+                Hacker News热门讨论话题，获得180个点赞。点击链接查看完整内容和社区讨论。这是当天最受关注的AI相关话题之一，汇聚了全球开发者和技术爱好者的观点。 该话题在Hacker News上获得了180个用户的关注和讨论，吸引了192条评论。这是一个值得关注的技术趋势，反映了当前AI领域最热门的发展方向。
             </div>
             <a href="https://www.nytimes.com/2026/02/24/business/irs-meta-corporate-taxes.html" target="_blank" class="read-more">
                 阅读原文 →
@@ -490,20 +558,20 @@
         <div class="news-card">
             <div class="card-header">
                 <div class="news-title">
-                    <a href="https://www.reuters.com/business/feds-cook-says-ai-triggering-big-changes-sees-possible-short-term-unemployment-2026-02-24/" target="_blank">Fed's Cook says AI triggering big changes, sees possible unemployment rise</a>
+                    <a href="https://vmfunc.re/blog/persona/" target="_blank">OpenAI, the US government and Persona built an identity surveillance machine</a>
                 </div>
-                <div class="rank-badge">6</div>
+                <div class="rank-badge">4</div>
             </div>
-            <div class="tags"><span class="tag">AI前沿</span></div>
+            <div class="tags"><span class="tag">OpenAI</span></div>
             <div class="news-meta">
-                <div class="meta-item hot">🔥 40</div>
-                <div class="meta-item">💬 17</div>
-                <div class="domain">🌐 www.reuters.com</div>
+                <div class="meta-item hot">🔥 422</div>
+                <div class="meta-item">💬 134</div>
+                <div class="domain">🌐 vmfunc.re</div>
             </div>
             <div class="news-summary">
-                Hacker News热门讨论话题，获得40个点赞。点击链接查看完整内容和社区讨论。这是当天最受关注的AI相关话题之一，汇聚了全球开发者和技术爱好者的观点。 该话题在Hacker News上获得了40个用户的关注和讨论，吸引了17条评论。这是一个值得关注的技术趋势，反映了当前AI领域最热门的发展方向。
+                Related ongoing thread: Discord cuts ties with identity verification software, Persona - https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=47136036 - Feb 2026 (282 comments) 该话题在Hacker News上获得了422个用户的关注和讨论，吸引了134条评论。这是一个值得关注的技术趋势，反映了当前AI领域最热门的发展方向。
             </div>
-            <a href="https://www.reuters.com/business/feds-cook-says-ai-triggering-big-changes-sees-possible-short-term-unemployment-2026-02-24/" target="_blank" class="read-more">
+            <a href="https://vmfunc.re/blog/persona/" target="_blank" class="read-more">
                 阅读原文 →
             </a>
         </div>
@@ -511,20 +579,62 @@
         <div class="news-card">
             <div class="card-header">
                 <div class="news-title">
-                    <a href="https://www.inceptionlabs.ai/blog/introducing-mercury-2" target="_blank">Mercury 2: The fastest reasoning LLM, powered by diffusion</a>
+                    <a href="https://www.dropsitenews.com/p/israeli-soldiers-tel-sultan-gaza-red-crescent-civil-defense-massacre-report-forensic-architecture-earshot" target="_blank">IDF killed Gaza aid workers at point blank range in 2025 massacre: Report</a>
+                </div>
+                <div class="rank-badge">5</div>
+            </div>
+            <div class="tags"><span class="tag">AI前沿</span></div>
+            <div class="news-meta">
+                <div class="meta-item hot">🔥 1206</div>
+                <div class="meta-item">💬 457</div>
+                <div class="domain">🌐 www.dropsitenews.com</div>
+            </div>
+            <div class="news-summary">
+                Report [pdf]: https:&#x2F;&#x2F;content.forensic-architecture.org&#x2F;wp-content&#x2F;uploads... 该话题在Hacker News上获得了1206个用户的关注和讨论，吸引了457条评论。这是一个值得关注的技术趋势，反映了当前AI领域最热门的发展方向。
+            </div>
+            <a href="https://www.dropsitenews.com/p/israeli-soldiers-tel-sultan-gaza-red-crescent-civil-defense-massacre-report-forensic-architecture-earshot" target="_blank" class="read-more">
+                阅读原文 →
+            </a>
+        </div>
+
+        <div class="news-card">
+            <div class="card-header">
+                <div class="news-title">
+                    <a href="https://dreamrecorder.ai/" target="_blank">Dream Recorder AI – a portal to your subconscious</a>
+                </div>
+                <div class="rank-badge">6</div>
+            </div>
+            <div class="tags"><span class="tag">AI前沿</span></div>
+            <div class="news-meta">
+                <div class="meta-item hot">🔥 12</div>
+                <div class="meta-item">💬 11</div>
+                <div class="domain">🌐 dreamrecorder.ai</div>
+            </div>
+            <div class="news-summary">
+                Hacker News热门讨论话题，获得12个点赞。点击链接查看完整内容和社区讨论。这是当天最受关注的AI相关话题之一，汇聚了全球开发者和技术爱好者的观点。 该话题在Hacker News上获得了12个用户的关注和讨论，吸引了11条评论。这是一个值得关注的技术趋势，反映了当前AI领域最热门的发展方向。
+            </div>
+            <a href="https://dreamrecorder.ai/" target="_blank" class="read-more">
+                阅读原文 →
+            </a>
+        </div>
+
+        <div class="news-card">
+            <div class="card-header">
+                <div class="news-title">
+                    <a href="https://blog.cloudflare.com/vinext/" target="_blank">How we rebuilt Next.js with AI in one week</a>
                 </div>
                 <div class="rank-badge">7</div>
             </div>
-            <div class="tags"><span class="tag">大模型</span></div>
+            <div class="tags"><span class="tag">AI前沿</span></div>
             <div class="news-meta">
-                <div class="meta-item hot">🔥 15</div>
-                <div class="meta-item">💬 5</div>
-                <div class="domain">🌐 www.inceptionlabs.ai</div>
+                <div class="meta-item hot">🔥 331</div>
+                <div class="meta-item">💬 108</div>
+                <div class="domain">🌐 blog.cloudflare.com</div>
             </div>
             <div class="news-summary">
-                Hacker News热门讨论话题，获得15个点赞。点击链接查看完整内容和社区讨论。这是当天最受关注的AI相关话题之一，汇聚了全球开发者和技术爱好者的观点。 该话题在Hacker News上获得了15个用户的关注和讨论，吸引了5条评论。这是一个值得关注的技术趋势，反映了当前AI领域最热门的发展方向。
+                Hacker News热门讨论话题，获得331个点赞。点击链接查看完整内容和社区讨论。这是当天最受关注的AI相关话题之一，汇聚了全球开发者和技术爱好者的观点。 该话题在Hacker News上获得了331个用户的关注和讨论，吸引了108条评论。这是一个值得关注的技术趋势，反映了当前AI领域最热门的发展方向。
             </div>
-            <a href="https://www.inceptionlabs.ai/blog/introducing-mercury-2" target="_blank" class="read-more">
+            <a href="https://blog.cloudflare.com/vinext/" target="_blank" class="read-more">
                 阅读原文 →
             </a>
         </div>
@@ -559,7 +669,7 @@
                 <a href="https://news.ycombinator.com" target="_blank">Hacker News</a>
                 <a href="https://github.com" target="_blank">GitHub</a>
             </div>
-            <p class="update-time">更新时间: 2026-02-25 08:33</p>
+            <p class="update-time">更新时间: 2026-02-25 08:50</p>
         </footer>
     </div>
 </body>

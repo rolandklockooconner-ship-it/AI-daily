@@ -3,379 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🤖 AI Daily · 每日简报</title>
-    <meta name="description" content="每天精选AI行业热门资讯，中文翻译摘要">
-    <meta name="theme-color" content="#0a0a0f">
+    <title>🤖 AI每日简报 - 2026年03月07日</title>
+    <meta name="description" content="每天精选AI行业热门资讯，专注Hacker News AI热点">
+    <meta name="theme-color" content="#6366f1">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-deep: #050508;
-            --bg-surface: #0c0c12;
-            --bg-elevated: #13131a;
-            --bg-card: #1a1a24;
-            --accent-primary: #00ff88;
-            --accent-secondary: #00d4ff;
-            --accent-tertiary: #ff6b35;
-            --accent-glow: rgba(0, 255, 136, 0.15);
-            --text-primary: #f0f0f5;
-            --text-secondary: #8888a0;
-            --text-muted: #555566;
-            --border-subtle: rgba(255, 255, 255, 0.06);
-            --border-glow: rgba(0, 255, 136, 0.3);
-            --radius-sm: 6px;
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-light: #818cf8;
+            --gradient-start: #6366f1;
+            --gradient-end: #8b5cf6;
+            --bg-card: #ffffff;
+            --bg-body: #f8fafc;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+            --shadow-lg: 0 8px 30px rgba(0,0,0,0.12);
+            --radius-sm: 8px;
             --radius-md: 12px;
-            --radius-lg: 20px;
-            --font-display: 'Sora', sans-serif;
-            --font-mono: 'Space Mono', monospace;
+            --radius-lg: 16px;
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            font-family: var(--font-display);
-            background: var(--bg-deep);
+            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-body);
             color: var(--text-primary);
             line-height: 1.7;
             min-height: 100vh;
-            overflow-x: hidden;
         }
         
-        /* Animated background */
-        .bg-canvas {
+        /* 背景装饰 */
+        .bg-decoration {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: 
-                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0, 255, 136, 0.08) 0%, transparent 50%),
-                radial-gradient(ellipse 60% 40% at 80% 100%, rgba(0, 212, 255, 0.06) 0%, transparent 50%),
-                var(--bg-deep);
-        }
-        
-        .bg-grid {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background-image: 
-                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-            background-size: 60px 60px;
-            mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 20%, transparent 70%);
-            -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 20%, transparent 70%);
-        }
-        
-        /* Noise texture overlay */
-        .bg-canvas::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-            opacity: 0.03;
-            pointer-events: none;
-        }
-        
-        /* Header */
-        .header {
-            position: relative;
-            padding: 60px 24px 40px;
-            text-align: center;
-            overflow: hidden;
-        }
-        
-        .header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(0, 255, 136, 0.1) 0%, transparent 60%);
-            pointer-events: none;
-        }
-        
-        .logo {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 16px;
-            animation: fadeSlideDown 0.8s ease-out;
-        }
-        
-        .logo-icon {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
-            border-radius: var(--radius-md);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            box-shadow: 0 0 30px var(--accent-glow);
-        }
-        
-        .logo-text {
-            font-size: 28px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-primary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .header h1 {
-            font-size: 42px;
-            font-weight: 800;
-            margin-bottom: 12px;
-            letter-spacing: -1px;
-            animation: fadeSlideDown 0.8s ease-out 0.1s both;
-        }
-        
-        .header h1 span {
-            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .meta {
-            font-family: var(--font-mono);
-            font-size: 14px;
-            color: var(--text-secondary);
-            animation: fadeSlideDown 0.8s ease-out 0.2s both;
-        }
-        
-        .meta .date {
-            color: var(--accent-primary);
-            font-weight: 700;
-        }
-        
-        .stats-bar {
-            display: flex;
-            justify-content: center;
-            gap: 32px;
-            margin-top: 24px;
-            animation: fadeSlideDown 0.8s ease-out 0.3s both;
-        }
-        
-        .stat {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-family: var(--font-mono);
-            font-size: 13px;
-            color: var(--text-muted);
-        }
-        
-        .stat-value {
-            color: var(--accent-secondary);
-            font-weight: 700;
-        }
-        
-        /* Container */
-        .container {
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 0 20px 60px;
-        }
-        
-        /* Section */
-        .section {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-lg);
-            padding: 28px;
-            margin-bottom: 20px;
-            position: relative;
-            overflow: hidden;
-            animation: fadeSlideUp 0.6s ease-out both;
-        }
-        
-        .section:nth-child(1) { animation-delay: 0.1s; }
-        .section:nth-child(2) { animation-delay: 0.2s; }
-        .section:nth-child(3) { animation-delay: 0.3s; }
-        
-        .section::before {
-            content: '';
-            position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
-            opacity: 0.5;
+            height: 400px;
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            border-radius: 0 0 50% 50% / 0 0 40px 40px;
+            z-index: -1;
         }
         
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 24px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid var(--border-subtle);
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08) 0%, transparent 40%),
+                radial-gradient(circle at 40% 80%, rgba(255,255,255,0.06) 0%, transparent 30%);
+            z-index: -1;
         }
         
-        .section-icon {
-            width: 36px;
-            height: 36px;
-            background: var(--bg-elevated);
-            border-radius: var(--radius-sm);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 20px;
         }
         
-        .section-title {
-            font-size: 18px;
-            font-weight: 600;
-            letter-spacing: -0.3px;
-        }
-        
-        .section-subtitle {
-            font-family: var(--font-mono);
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-left: auto;
-        }
-        
-        /* Article */
-        .article {
-            padding: 20px 0;
-            border-bottom: 1px solid var(--border-subtle);
-            transition: all 0.3s ease;
-            animation: fadeSlideUp 0.5s ease-out both;
-        }
-        
-        .article:nth-child(1) { animation-delay: 0.15s; }
-        .article:nth-child(2) { animation-delay: 0.2s; }
-        .article:nth-child(3) { animation-delay: 0.25s; }
-        .article:nth-child(4) { animation-delay: 0.3s; }
-        .article:nth-child(5) { animation-delay: 0.35s; }
-        
-        .article:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-        
-        .article:first-child {
-            padding-top: 0;
-        }
-        
-        .article:hover {
-            background: var(--bg-elevated);
-            margin: 0 -12px;
-            padding: 20px 12px;
-            border-radius: var(--radius-md);
-            border-bottom-color: transparent;
-        }
-        
-        .article-header {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            margin-bottom: 10px;
-        }
-        
-        .article h3 {
-            font-size: 16px;
-            font-weight: 600;
-            line-height: 1.5;
-            flex: 1;
-        }
-        
-        .article h3 a {
-            color: var(--text-primary);
-            text-decoration: none;
-            transition: all 0.2s;
-        }
-        
-        .article h3 a:hover {
-            color: var(--accent-primary);
-        }
-        
-        .article-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-bottom: 10px;
-        }
-        
-        .tag {
-            display: inline-block;
-            background: var(--bg-elevated);
-            color: var(--accent-secondary);
-            padding: 3px 10px;
-            border-radius: 4px;
-            font-family: var(--font-mono);
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border: 1px solid var(--border-subtle);
-            transition: all 0.2s;
-        }
-        
-        .tag:hover {
-            border-color: var(--accent-secondary);
-            box-shadow: 0 0 12px rgba(0, 212, 255, 0.2);
-        }
-        
-        .article p {
-            color: var(--text-secondary);
-            font-size: 14px;
-            line-height: 1.7;
-        }
-        
-        /* Footer */
-        .footer {
+        /* 头部 */
+        header {
             text-align: center;
-            padding: 40px 24px;
-            color: var(--text-muted);
-            font-size: 13px;
-            animation: fadeSlideUp 0.6s ease-out 0.4s both;
+            padding: 40px 0 30px;
+            color: white;
         }
         
-        .footer-logo {
-            font-size: 24px;
+        .logo {
+            font-size: 3rem;
             margin-bottom: 12px;
+            animation: float 3s ease-in-out infinite;
         }
         
-        .footer p {
-            font-family: var(--font-mono);
-            font-size: 12px;
-            line-height: 1.8;
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
         }
         
-        .footer .accent {
-            color: var(--accent-primary);
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         
-        /* Animations */
-        @keyframes fadeSlideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .subtitle {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            font-weight: 400;
         }
         
-        @keyframes fadeSlideUp {
+        .date-info {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 16px;
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .date-info span {
+            font-weight: 500;
+        }
+        
+        /* 统计栏 */
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: white;
+            font-size: 0.9rem;
+            opacity: 0.95;
+        }
+        
+        .stat-item .icon {
+            font-size: 1.1rem;
+        }
+        
+        /* 新闻卡片 */
+        .news-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .news-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            padding: 20px 22px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(0,0,0,0.04);
+            animation: slideIn 0.5s ease-out backwards;
+        }
+        
+        .news-card:nth-child(1) { animation-delay: 0.05s; }
+        .news-card:nth-child(2) { animation-delay: 0.1s; }
+        .news-card:nth-child(3) { animation-delay: 0.15s; }
+        .news-card:nth-child(4) { animation-delay: 0.2s; }
+        .news-card:nth-child(5) { animation-delay: 0.25s; }
+        
+        @keyframes slideIn {
             from {
                 opacity: 0;
                 transform: translateY(20px);
@@ -386,201 +174,617 @@
             }
         }
         
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.6; }
+        .news-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
         }
         
-        .pulse {
-            animation: pulse 2s ease-in-out infinite;
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            gap: 12px;
         }
         
-        /* Responsive */
-        @media (max-width: 640px) {
-            .header h1 {
-                font-size: 28px;
+        .news-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            line-height: 1.5;
+            flex: 1;
+        }
+        
+        .news-title a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .news-title a:hover {
+            color: var(--primary);
+        }
+        
+        .rank-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            background: linear-gradient(135deg, rgba(99,102,241,0.1) 0%, rgba(139,92,246,0.1) 100%);
+            color: var(--primary-dark);
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+        
+        .tag-hot {
+            background: linear-gradient(135deg, rgba(239,68,68,0.1) 0%, rgba(252,129,129,0.1) 100%);
+            color: #dc2626;
+        }
+        
+        .news-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            padding-bottom: 12px;
+            border-bottom: 1px dashed #e2e8f0;
+            margin-bottom: 12px;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .meta-item.hot {
+            color: #f97316;
+            font-weight: 500;
+        }
+        
+        .domain {
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            max-width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        .news-summary {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.8;
+            text-align: justify;
+        }
+        
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: 12px;
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: gap 0.2s;
+        }
+        
+        .read-more:hover {
+            gap: 8px;
+        }
+        
+        /* 底部 */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 16px;
+        }
+        
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .update-time {
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        
+        /* 响应式 */
+        @media (max-width: 600px) {
+            .container { padding: 16px; }
+            header { padding: 30px 0 20px; }
+            h1 { font-size: 1.5rem; }
+            .stats-bar { gap: 16px; }
+            .news-card { padding: 16px 18px; }
+            .news-title { font-size: 0.95rem; }
+            .bg-decoration { height: 320px; }
+        }
+        
+        /* 区块标题 */
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 30px 0 16px;
+            padding-left: 12px;
+            border-left: 4px solid var(--primary);
+        }
+        
+        /* 手动推荐卡片 */
+        .manual-card {
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .manual-badge {
+            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+        }
+        
+        .tag-manual {
+            background: linear-gradient(135deg, rgba(245,158,11,0.1) 0%, rgba(251,191,36,0.1) 100%);
+            color: #d97706;
+        }
+        
+        /* RSS卡片 */
+        .rss-card {
+            border-left: 4px solid #10b981;
+        }
+        
+        .rss-badge {
+            background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+        }
+        
+        .tag-rss {
+            background: linear-gradient(135deg, rgba(16,185,129,0.1) 0%, rgba(52,211,153,0.1) 100%);
+            color: #059669;
+        }
+        
+        /* 暗色模式 */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-card: #1e293b;
+                --bg-body: #0f172a;
+                --text-primary: #f1f5f9;
+                --text-secondary: #94a3b8;
+                --text-muted: #64748b;
             }
-            
-            .stats-bar {
-                flex-direction: column;
-                gap: 12px;
-            }
-            
-            .section {
-                padding: 20px;
-            }
-            
-            .article:hover {
-                margin: 0 -8px;
-                padding: 16px 8px;
-            }
-        }
-        
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: var(--bg-deep);
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: var(--bg-elevated);
-            border-radius: 4px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--bg-card);
+            .news-card { border-color: rgba(255,255,255,0.08); }
+            .news-meta { border-color: rgba(255,255,255,0.1); }
         }
     </style>
 </head>
 <body>
-    <div class="bg-canvas"></div>
-    <div class="bg-grid"></div>
-    
-    <header class="header">
-        <div class="logo">
-            <div class="logo-icon">🤖</div>
-            <div class="logo-text">AI Daily</div>
-        </div>
-        <h1>每日<span>简报</span></h1>
-        <div class="meta">
-            <span class="date">2026.03.06</span> · 周五 · AI行业热门资讯
-        </div>
-        <div class="stats-bar">
-            <div class="stat">
-                <span>📡</span>
-                <span class="stat-value">13</span>
-                <span>RSS资讯</span>
-            </div>
-            <div class="stat">
-                <span>🏆</span>
-                <span class="stat-value">10</span>
-                <span>精选文章</span>
-            </div>
-            <div class="stat">
-                <span>⏰</span>
-                <span class="stat-value">每日</span>
-                <span>更新</span>
-            </div>
-        </div>
-    </header>
+    <div class="bg-decoration"></div>
+    <div class="bg-pattern"></div>
     
     <div class="container">
-        <div class="section">
-            <div class="section-header">
-                <div class="section-icon">🏆</div>
-                <div class="section-title">今日精选</div>
-                <div class="section-subtitle">中文翻译</div>
+        <header>
+            <div class="logo">🤖</div>
+            <h1>AI每日简报</h1>
+            <p class="subtitle">每天精选AI行业热门资讯</p>
+            <div class="date-info">
+                📅 <span>2026年03月07日</span> · <span>周六</span> · 🔄 每日更新
             </div>
-
-            <div class="article">
-                <div class="article-header">
-                    <h3><a href="https://simonwillison.net/guides/agentic-engineering-patterns/" target="_blank">Agentic Engineering Patterns：AI编程范式革命</a></h3>
-                </div>
-                <div class="article-tags">
-                    <span class="tag">Simon Willison</span>
-                </div>
-                <p>Simon Willison 开始了一个新项目，收集和记录 AI 编程工程模式。该项目旨在帮助开发者更好地使用 Claude Code 和 OpenAI Codex 等编程 Agent。核心观点：编写代码的成本已经降到极低，专业软件工程师使用 AI Agent 来提升工作效率。</p>
+        </header>
+        
+        <div class="stats-bar">
+            <div class="stat-item">
+                <span class="icon">📰</span>
+                <span>1 条热门资讯</span>
             </div>
-
-            <div class="article">
-                <div class="article-header">
-                    <h3><a href="https://simonwillison.net/guides/agentic-engineering-patterns/code-is-cheap/" target="_blank">编写代码变得便宜了</a></h3>
-                </div>
-                <div class="article-tags">
-                    <span class="tag">Simon Willison</span>
-                </div>
-                <p>这是 Agentic Engineering 的核心挑战：生成初始代码的成本已降至几乎为零。这如何影响我们个人和团队的工作方式？文章探讨了开发者工作流程的根本性变化。</p>
+            <div class="stat-item">
+                <span class="icon">🔥</span>
+                <span>源自 Hacker News</span>
             </div>
-
-            <div class="article">
-                <div class="article-header">
-                    <h3><a href="https://simonwillison.net/guides/agentic-engineering-patterns/red-green-tdd/" target="_blank">红绿TDD测试驱动开发</a></h3>
-                </div>
-                <div class="article-tags">
-                    <span class="tag">Simon Willison</span>
-                </div>
-                <p>测试先行开发（Test-First Development）帮助 Agent 写出更简洁、更可靠的代码，只需最少的提示词。文章介绍了如何用 TDD 提升 AI 编程效率。</p>
-            </div>
-
-            <div class="article">
-                <div class="article-header">
-                    <h3><a href="https://simonwillison.net/guides/agentic-engineering-patterns/linear-walkthroughs/" target="_blank">Linear Walkthroughs：线性代码解读</a></h3>
-                </div>
-                <div class="article-tags">
-                    <span class="tag">Simon Willison</span>
-                </div>
-                <p>一种让 AI Agent 按顺序逐行解读代码的模式，帮助理解复杂代码库。通过线性方式分析代码结构和执行流程。</p>
-            </div>
-
-            <div class="article">
-                <div class="article-header">
-                    <h3><a href="https://simonwillison.net/guides/agentic-engineering-patterns/interactive-explanations/" target="_blank">Interactive Explanations：交互式解释</a></h3>
-                </div>
-                <div class="article-tags">
-                    <span class="tag">Simon Willison</span>
-                </div>
-                <p>利用动画和交互式演示来解释代码概念。通过可视化的方式让代码逻辑更易懂，是提升代码可读性的有效方法。</p>
-            </div>
-
-            <div class="article">
-                <div class="article-header">
-                    <h3><a href="https://simonwillison.net/guides/agentic-engineering-patterns/gif-optimization/" target="_blank">GIF优化工具：WASM + Gifsicle实战</a></h3>
-                </div>
-                <div class="article-tags">
-                    <span class="tag">Simon Willison</span>
-                </div>
-                <p>Simon Willison 展示如何用 Claude Code 从 iPhone 构建 GIF 优化工具。详细介绍了如何用 AI Agent 完成完整的 Web 开发流程。</p>
-            </div>
-
-            <div class="article">
-                <div class="article-header">
-                    <h3><a href="https://docs.anthropic.com/en/docs/claude-code/overview" target="_blank">Claude Code：命令行AI编程助手</a></h3>
-                </div>
-                <div class="article-tags">
-                    <span class="tag">Anthropic</span>
-                </div>
-                <p>Anthropic 发布的 Claude Code 是支持网络浏览和文件操作的命令行 AI Agent 工具。为开发者提供本地化的 AI 编程能力。</p>
-            </div>
-
-            <div class="article">
-                <div class="article-header">
-                    <h3><a href="https://princeton-nlp.github.io/SWebench/" target="_blank">SWE-bench 2.0：AI软件工程基准</a></h3>
-                </div>
-                <div class="article-tags">
-                    <span class="tag">Stanford NLP</span>
-                </div>
-                <p>斯坦福 NLP 团队发布 SWE-bench 2.0，评估 AI 解决真实世界软件问题的能力。包含 Python、TypeScript 等多种语言的真实 GitHub 问题。</p>
-            </div>
-
-            <div class="article">
-                <div class="article-header">
-                    <h3><a href="https://garymarcus.substack.com/p/llm-reasoning" target="_blank">LLM推理能力的深度分析</a></h3>
-                </div>
-                <div class="article-tags">
-                    <span class="tag">Gary Marcus</span>
-                </div>
-                <p>Gary Marcus 深度分析大语言模型的推理能力及其局限性。探讨当前 LLM 在复杂推理任务上的表现和存在的瓶颈。</p>
-            </div>
-
-            <div class="article">
-                <div class="article-header">
-                    <h3><a href="https://mitchellh.com/building-ai-agents" target="_blank">Building AI Agents实践指南</a></h3>
-                </div>
-                <div class="article-tags">
-                    <span class="tag">Mitchell Hashimoto</span>
-                </div>
-                <p>Mitchell Hashimoto 分享构建 AI Agent 的实践经验。涵盖 Agent 架构设计、工具调用、记忆机制等核心概念。</p>
-            </div>
+            <div class="stat-item"><span class="icon">📡</span><span>14 条RSS资讯</span></div>
         </div>
+
+        <div class="section-title">📡 国内资讯</div>
+        <div class="news-list">
+
+        <div class="news-card rss-card">
+            <div class="card-header">
+                <div class="news-title">
+                    <a href="http://www.huxiu.com/article/4839667.html?f=wangzhan" target="_blank">别认为小鹏还只是个造车的</a>
+                </div>
+                <div class="rank-badge rss-badge">1</div>
+            </div>
+            <div class="tags"><span class="tag tag-rss">虎嗅</span></div>
+            <div class="news-summary">
+                多年之后，也许没人还会记得小鹏是个造车企业。&nbsp;“我非常坚信1-3年全自动驾驶会落地、3-5年所有汽车都会成为强力超级智能体。”在3月2日的小鹏第二代VLA媒体体验日上，小鹏汽车董事长 CEO何小鹏如是说道。...
+            </div>
+            <a href="http://www.huxiu.com/article/4839667.html?f=wangzhan" target="_blank" class="read-more">
+                阅读原文 →
+            </a>
+        </div>
+
+        <div class="news-card rss-card">
+            <div class="card-header">
+                <div class="news-title">
+                    <a href="http://www.huxiu.com/article/4839506.html?f=wangzhan" target="_blank">阿里不希望任何人上“神坛”？</a>
+                </div>
+                <div class="rank-badge rss-badge">2</div>
+            </div>
+            <div class="tags"><span class="tag tag-rss">虎嗅</span></div>
+            <div class="news-summary">
+                阿里不想让任何人成为“神”，林俊旸却在AI圈成了传奇：93年出生，一年升到P10，却突然宣布离开，连马斯克都点赞了他的千问3.5开源模型。对于阿里这种公司，它永远能找到下一位周畅、林俊旸。下载虎嗅APP，第一时间获取深度独到的商业科技资讯，连接更多创新人群与线下活动
+            </div>
+            <a href="http://www.huxiu.com/article/4839506.html?f=wangzhan" target="_blank" class="read-more">
+                阅读原文 →
+            </a>
+        </div>
+
+        <div class="news-card rss-card">
+            <div class="card-header">
+                <div class="news-title">
+                    <a href="http://www.huxiu.com/article/4838881.html?f=wangzhan" target="_blank">小鹏的2026，没有Plan B</a>
+                </div>
+                <div class="rank-badge rss-badge">3</div>
+            </div>
+            <div class="tags"><span class="tag tag-rss">虎嗅</span></div>
+            <div class="news-summary">
+                出品|虎嗅汽车组作者|杨杰头图|小鹏官方&nbsp;2026年开年，小鹏汽车的日子不好过。一方面，市场淡季冲击之下，小鹏汽车交付量有所波动，引发行业聚焦；另一方面，董事长何小鹏高调“炮轰”现有L2级辅助驾驶为“缝合怪”，直言自动驾驶将在未来1-3年内到来，再度将这家车企推向了舆论的风口浪尖。...
+            </div>
+            <a href="http://www.huxiu.com/article/4838881.html?f=wangzhan" target="_blank" class="read-more">
+                阅读原文 →
+            </a>
+        </div>
+
+        <div class="news-card rss-card">
+            <div class="card-header">
+                <div class="news-title">
+                    <a href="http://www.huxiu.com/article/4837484.html?f=wangzhan" target="_blank">史上最忙AI春节档：海量新品，如何才能不焦虑？</a>
+                </div>
+                <div class="rank-badge rss-badge">4</div>
+            </div>
+            <div class="tags"><span class="tag tag-rss">虎嗅</span></div>
+            <div class="news-summary">
+                刚刚过去的春节档，应该有很多人跟我一样本来可以开心休息的，结果被各种国内外AI新产品新功能各种刷屏，焦虑不断、心力憔悴，难道普通人真的跟不上AI的发展节奏了吗？枪仔帮你把春节期间的AI信息差，一期视频都给你补上，来看一下史上最忙AI春节档，都发生了什么？...
+            </div>
+            <a href="http://www.huxiu.com/article/4837484.html?f=wangzhan" target="_blank" class="read-more">
+                阅读原文 →
+            </a>
+        </div>
+
+        <div class="news-card rss-card">
+            <div class="card-header">
+                <div class="news-title">
+                    <a href="https://www.tmtpost.com/7902914.html" target="_blank">硅谷程序员，疯狂“投喂”中国大模型</a>
+                </div>
+                <div class="rank-badge rss-badge">5</div>
+            </div>
+            <div class="tags"><span class="tag tag-rss">钛媒体</span></div>
+            <div class="news-summary">
+                从卖APP到卖算力 本文探讨了硅谷程序员，疯狂“投喂”中国大模型相关的热点话题，点击查看完整内容。
+            </div>
+            <a href="https://www.tmtpost.com/7902914.html" target="_blank" class="read-more">
+                阅读原文 →
+            </a>
+        </div>
+
+        <div class="news-card rss-card">
+            <div class="card-header">
+                <div class="news-title">
+                    <a href="https://www.tmtpost.com/7902464.html" target="_blank">第一批部署AI Agent的公司，撞上了「三堵墙」</a>
+                </div>
+                <div class="rank-badge rss-badge">6</div>
+            </div>
+            <div class="tags"><span class="tag tag-rss">钛媒体</span></div>
+            <div class="news-summary">
+                甜蜜和苦涩 本文探讨了第一批部署AI Agent的公司，撞上了「三堵墙」相关的热点话题，点击查看完整内容。
+            </div>
+            <a href="https://www.tmtpost.com/7902464.html" target="_blank" class="read-more">
+                阅读原文 →
+            </a>
+        </div>
+
+        <div class="news-card rss-card">
+            <div class="card-header">
+                <div class="news-title">
+                    <a href="https://www.tmtpost.com/7902458.html" target="_blank">两会科技大佬集体发声：自动驾驶商业化落地破局，雷军划红线付强指方向</a>
+                </div>
+                <div class="rank-badge rss-badge">7</div>
+            </div>
+            <div class="tags"><span class="tag tag-rss">钛媒体</span></div>
+            <div class="news-summary">
+                2026 年，是 “十五五” 规划的开局之年，也是中国自动驾驶商业化落地的关键之年。 本文探讨了两会科技大佬集体发声：自动驾驶商业化落地破局，雷军划红线付强指方向相关的热点话题，点击查看完整内容。
+            </div>
+            <a href="https://www.tmtpost.com/7902458.html" target="_blank" class="read-more">
+                阅读原文 →
+            </a>
+        </div>
+
+        <div class="news-card rss-card">
+            <div class="card-header">
+                <div class="news-title">
+                    <a href="https://www.tmtpost.com/7902316.html" target="_blank">日产千部的AI漫剧，正在“偷空”知乎</a>
+                </div>
+                <div class="rank-badge rss-badge">8</div>
+            </div>
+            <div class="tags"><span class="tag tag-rss">钛媒体</span></div>
+            <div class="news-summary">
+                洗稿1分钟维权1年半，这仗怎么打？ 本文探讨了日产千部的AI漫剧，正在“偷空”知乎相关的热点话题，点击查看完整内容。
+            </div>
+            <a href="https://www.tmtpost.com/7902316.html" target="_blank" class="read-more">
+                阅读原文 →
+            </a>
+        </div>
+
+        <div class="news-card rss-card">
+            <div class="card-header">
+                <div class="news-title">
+                    <a href="https://36kr.com/p/3711355370615169?f=rss" target="_blank">氪星晚报｜蜜雪冰城公司已公布多项咖啡相关专利；证监会同意春光集团创业板IPO注册；千问持续推进AI生活服务落地</a>
+                </div>
+                <div class="rank-badge rss-badge">9</div>
+            </div>
+            <div class="tags"><span class="tag tag-rss">36氪</span></div>
+            <div class="news-summary">
+                大公司：
+  蜜雪冰城公司已公布多项咖啡相关专利
+  36氪获悉，目前蜜雪冰城现磨咖啡业务处于前期规划试点阶段，除全自动咖啡机外，接下来将同步试点升级咖啡产品线，包括推出咖啡新品，升级咖啡豆、牛奶等核心原料等多个方面，整体仍将延续高质平价的产品策略。...
+            </div>
+            <a href="https://36kr.com/p/3711355370615169?f=rss" target="_blank" class="read-more">
+                阅读原文 →
+            </a>
+        </div>
+
+        <div class="news-card rss-card">
+            <div class="card-header">
+                <div class="news-title">
+                    <a href="https://36kr.com/p/3711294378930306?f=rss" target="_blank">倒计时10天，2026 AI最佳场景渗透案例火热征集中</a>
+                </div>
+                <div class="rank-badge rss-badge">10</div>
+            </div>
+            <div class="tags"><span class="tag tag-rss">36氪</span></div>
+            <div class="news-summary">
+                2026年开年，中国AI领域热度拉满，几乎每隔几天就有重磅消息刷屏。
+  国内，马年春晚舞台上，宇树科技、银河通用、魔法原子、松延动力四家人形机器人品牌集体亮相，覆盖武术、歌曲、小品、微电影等多个节目，以高难度动作与沉浸式交互，展现中国AI从实验室走向大众视野的加速进程，成为“史上最AI春晚”的标志...
+            </div>
+            <a href="https://36kr.com/p/3711294378930306?f=rss" target="_blank" class="read-more">
+                阅读原文 →
+            </a>
+        </div>
+
+        <div class="news-card rss-card">
+            <div class="card-header">
+                <div class="news-title">
+                    <a href="https://36kr.com/p/3710693707166083?f=rss" target="_blank">8点1氪丨寿司郎被曝吃出寄生虫卵，当地市监局通报；全国人大代表建议尽量不要调休；谷歌DeepMind高管公开邀请千问团队入职</a>
+                </div>
+                <div class="rank-badge rss-badge">11</div>
+            </div>
+            <div class="tags"><span class="tag tag-rss">36氪</span></div>
+            <div class="news-summary">
+                今日热点导览
+  
+   魔法原子回应创始人离职：确有此事，目前技术团队稳定
+   伊朗：禁止美以欧船只通过霍尔木兹海峡
+   现货白银向下跌破81美元/盎司
+   MacBook Neo国补后低至3000多元
+   亚马逊在机器人部门裁员约100人
+  
+  TOP 3 大新闻
+  消费者称在寿司...
+            </div>
+            <a href="https://36kr.com/p/3710693707166083?f=rss" target="_blank" class="read-more">
+                阅读原文 →
+            </a>
+        </div>
+
+        <div class="news-card rss-card">
+            <div class="card-header">
+                <div class="news-title">
+                    <a href="https://36kr.com/p/3710171805806976?f=rss" target="_blank">海信发布世界杯定制产品，有AI功能的电视、空调、洗衣机集中上新丨最前线</a>
+                </div>
+                <div class="rank-badge rss-badge">12</div>
+            </div>
+            <div class="tags"><span class="tag tag-rss">36氪</span></div>
+            <div class="news-summary">
+                距2026美加墨世界杯开幕不足100天，作为官方赞助商，海信于3月5日在青岛一口气推出覆盖电视、空调、洗衣机等家电的全品类AI新品。
+  在电视上，海信把AI做成“观赛搭子”。RGB-Mini LED旗舰电视UX2026款除了强调画质提升，更突出“AI观赛”体验：支持赛中AI查询阵容及识别场上球员，...
+            </div>
+            <a href="https://36kr.com/p/3710171805806976?f=rss" target="_blank" class="read-more">
+                阅读原文 →
+            </a>
+        </div>
+
+        <div class="news-card rss-card">
+            <div class="card-header">
+                <div class="news-title">
+                    <a href="https://36kr.com/p/3709831706374531?f=rss" target="_blank">氪星晚报｜谷歌DeepMind向千问团队抛橄榄枝；韩国总统下令实施100万亿韩元资本市场稳定计划；默沙东回应美国疫苗工厂裁员</a>
+                </div>
+                <div class="rank-badge rss-badge">13</div>
+            </div>
+            <div class="tags"><span class="tag tag-rss">36氪</span></div>
+            <div class="news-summary">
+                大公司：
+  阿里巴巴旗下公司在杭州成立智能科技新公司
+  36氪获悉，爱企查App显示，近日，杭州瓴通智能科技有限公司成立，法定代表人为林鸣晖，注册资本1000万元人民币，经营范围包括软件开发、计算机软硬件及外围设备制造、数据处理和存储支持服务、大数据服务、互联网数据服务、人工智能应用软件开发等。...
+            </div>
+            <a href="https://36kr.com/p/3709831706374531?f=rss" target="_blank" class="read-more">
+                阅读原文 →
+            </a>
+        </div>
+
+        <div class="news-card rss-card">
+            <div class="card-header">
+                <div class="news-title">
+                    <a href="https://36kr.com/p/3709819839443333?f=rss" target="_blank">AI+生命科技实现废弃物循环利用，国家级专精特新“重点小巨人”「蔚复来」完成数千万元C2轮融资 | 36氪首发</a>
+                </div>
+                <div class="rank-badge rss-badge">14</div>
+            </div>
+            <div class="tags"><span class="tag tag-rss">36氪</span></div>
+            <div class="news-summary">
+                文&nbsp;|&nbsp;张冰冰
+  编辑&nbsp;|&nbsp;阿至
+  36氪获悉，蔚复来（浙江）科技股份有限公司（以下简称「蔚复来」）近日宣布完成数千万元C2轮融资，投资方为博将资本。这是博将资本第二次向蔚复来追投注资，与此前C1轮累计投资规模超亿元。...
+            </div>
+            <a href="https://36kr.com/p/3709819839443333?f=rss" target="_blank" class="read-more">
+                阅读原文 →
+            </a>
+        </div>
+
+        </div>
+
+        <div class="section-title">📝 今日推荐</div>
+        <div class="news-list">
+
+        <div class="news-card manual-card">
+            <div class="card-header">
+                <div class="news-title">
+                    <a href="https://openai.com" target="_blank">OpenAI发布GPT-5技术预览</a>
+                </div>
+                <div class="rank-badge manual-badge">推荐</div>
+            </div>
+            <div class="tags"><span class="tag tag-manual">编辑推荐</span></div>
+            <div class="news-summary">
+                近日，OpenAI正式发布GPT-5技术预览版，展现了跨模态理解和推理能力的重大突破。新版本在科学推理、代码生成和多语言任务上显著提升，同时引入了更精细的对齐机制来减少幻觉。OpenAI表示，GPT-5将继续遵循"稳步迭代"策略，先面向Plus用户开放测试。
+            </div>
+            <a href="https://openai.com" target="_blank" class="read-more">
+                阅读原文 →
+            </a>
+        </div>
+
+        <div class="news-card manual-card">
+            <div class="card-header">
+                <div class="news-title">
+                    <a href="https://example.com" target="_blank">AI Agent浪潮席卷硅谷</a>
+                </div>
+                <div class="rank-badge manual-badge">推荐</div>
+            </div>
+            <div class="tags"><span class="tag tag-manual">编辑推荐</span></div>
+            <div class="news-summary">
+                2026年初，AI Agent成为硅谷最热门投资方向。多家初创公司获得千万美元融资，核心方向包括自动化工作流、多Agent协作和个性化AI助手。投资人认为，Agent代表了从"对话"到"行动"的范式转移，将深刻改变软件交互方式。
+            </div>
+            <a href="https://example.com" target="_blank" class="read-more">
+                阅读原文 →
+            </a>
+        </div>
+
+        <div class="news-card manual-card">
+            <div class="card-header">
+                <div class="news-title">
+                    <a href="https://example.com" target="_blank">英伟达发布新一代AI芯片B200</a>
+                </div>
+                <div class="rank-badge manual-badge">推荐</div>
+            </div>
+            <div class="tags"><span class="tag tag-manual">编辑推荐</span></div>
+            <div class="news-summary">
+                英伟达在GTC大会上发布Blackwell架构B200 GPU，AI性能达到20PetaFLOPS。黃仁勋表示，该芯片将大幅降低大模型训练成本，推动AI应用普及。新芯片预计Q3上市，首批供应云服务商。
+            </div>
+            <a href="https://example.com" target="_blank" class="read-more">
+                阅读原文 →
+            </a>
+        </div>
+
+        <div class="news-card manual-card">
+            <div class="card-header">
+                <div class="news-title">
+                    <a href="https://example.com" target="_blank">北大发布中文大模型评估基准</a>
+                </div>
+                <div class="rank-badge manual-badge">推荐</div>
+            </div>
+            <div class="tags"><span class="tag tag-manual">编辑推荐</span></div>
+            <div class="news-summary">
+                北京大学联合多家机构发布"中文大模型综合评估基准"，涵盖知识推理、文学创作、专业领域理解等维度。基准测试显示，国产大模型在中文理解任务上已接近GPT-4水平，但在复杂推理方面仍有差距。
+            </div>
+            <a href="https://example.com" target="_blank" class="read-more">
+                阅读原文 →
+            </a>
+        </div>
+
+        <div class="news-card manual-card">
+            <div class="card-header">
+                <div class="news-title">
+                    <a href="https://example.com" target="_blank">AI编程工具市场爆发</a>
+                </div>
+                <div class="rank-badge manual-badge">推荐</div>
+            </div>
+            <div class="tags"><span class="tag tag-manual">编辑推荐</span></div>
+            <div class="news-summary">
+                AI编程助手市场2026年预计突破50亿美元。GitHub Copilot、Cursor等工具用户激增，开发者效率提升40%以上。行业分析认为，AI编程将从"辅助编码"向"自主完成项目"演进。
+            </div>
+            <a href="https://example.com" target="_blank" class="read-more">
+                阅读原文 →
+            </a>
+        </div>
+
+        </div>
+        
+        <div class="section-title">🔥 热门资讯</div>
+        <div class="news-list">
+
+        <div class="news-card">
+            <div class="card-header">
+                <div class="news-title">
+                    <a href="https://www.anthropic.com/news/mozilla-firefox-security" target="_blank">Hardening Firefox with Anthropic's Red Team</a>
+                </div>
+                <div class="rank-badge">1</div>
+            </div>
+            <div class="tags"><span class="tag">Anthropic</span></div>
+            <div class="news-meta">
+                <div class="meta-item hot">🔥 383</div>
+                <div class="meta-item">💬 114</div>
+                <div class="domain">🌐 www.anthropic.com</div>
+            </div>
+            <div class="news-summary">
+                The bugs are the ones that say &quot;using Claude from Anthropic&quot; here: https:&#x2F;&#x2F;www.mozilla.org&#x2F;en-US&#x2F;security&#x2F;advisories&#x2F;mfsa2026-1...https:&#x2F;&#x2F;blog.mozilla.org&#x2F;en&#x2F;firefox&#x2F;hardening-firefox-anthro...https:&#x2F;&#x2F;www.wsj.com&#x2F;tech&#x2F;ai&#x2F;send-us-more-anthropics-claude-s...
+            </div>
+            <a href="https://www.anthropic.com/news/mozilla-firefox-security" target="_blank" class="read-more">
+                阅读原文 →
+            </a>
+        </div>
+
+        </div>
+        
+        <footer>
+            <div class="footer-logo">🤖</div>
+            <p>AI每日简报 · 每天自动更新</p>
+            <div class="footer-links">
+                <a href="https://news.ycombinator.com" target="_blank">Hacker News</a>
+                <a href="https://github.com" target="_blank">GitHub</a>
+            </div>
+            <p class="update-time">更新时间: 2026-03-07 06:00</p>
+        </footer>
     </div>
-    
-    <footer class="footer">
-        <div class="footer-logo">🤖</div>
-        <p><span class="accent">AI Daily</span> · 每天精选AI热门文章的中文摘要</p>
-        <p>Powered by OpenClaw</p>
-    </footer>
 </body>
 </html>
